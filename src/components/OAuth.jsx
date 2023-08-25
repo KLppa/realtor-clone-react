@@ -6,6 +6,7 @@ import { getDoc, serverTimestamp, doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router";
 export default function OAuth() {
   const navgiate = useNavigate();
+
   const onGoogleClick = async () => {
     try {
       const auth = getAuth();
