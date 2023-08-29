@@ -8,20 +8,41 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Offers from "./pages/Offers";
 import PrivateRoute from "./components/PrivateRoute";
 import Header from "./components/Header";
+import CreateListing from "./pages/CreateListing";
+import EditListing from "./pages/EditListing";
+import Listing from "./pages/Listing";
 export default function App() {
   return (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
+
         <Route path="/profile" element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />}></Route>
         </Route>
 
         <Route path="/sign-in" element={<SignIn />}></Route>
         <Route path="/sign-up" element={<SignUp />}></Route>
+
         <Route path="/forgot-password" element={<ForgotPassword />}></Route>
         <Route path="/offers" element={<Offers />}></Route>
+
+        <Route
+          path="/category/:categoryName/:listingId"
+          element={<Listing />}
+        ></Route>
+
+        <Route path="create-listing" element={<PrivateRoute />}>
+          <Route path="/create-listing" element={<CreateListing />}></Route>
+        </Route>
+
+        <Route path="edit-listing" element={<PrivateRoute />}>
+          <Route
+            path="/edit-listing/:listingId"
+            element={<EditListing />}
+          ></Route>
+        </Route>
       </Routes>
       <ToastContainer
         position="bottom-center"
