@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { FaShareSquare } from "react-icons/fa";
+import { FaShareSquare, FaBath, FaParking, FaChair } from "react-icons/fa";
+import { FaBedPulse } from "react-icons/fa6";
+import { LiaMapMarkerAltSolid } from "react-icons/lia";
 import Spinner from "../components/Spinner";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
@@ -77,6 +79,69 @@ export default function Listing() {
           Link Copied
         </p>
       )}
+
+      <div className="m-4 flex flex-col md:flex-row max-w-6xl lg:max-auto p-4 rounded-lg border-3 shadow-lg bg-white lg:space-x-5">
+        <div className="bg-pink-300 w-full h-[400px] lg-[400px]">
+          <p className="text-2xl font-bold mb-3 text-blue-900">
+            {listing.name} - $&nbsp;
+            {listing.offer
+              ? listing.discountedPrice
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              : listing.regularPrice
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            {listing.type === "rent" ? "/ month" : ""}
+          </p>
+
+          <p className="flex items-center mt-6 mb-3 font-semibold">
+            <LiaMapMarkerAltSolid className="text-green-700 mr-1" />
+            {listing.address}
+          </p>
+
+          <div className="flex justify-start items-center space-x-4 w-[75%]">
+            {/* Sale */}
+            <p className="bg-red-800 w-full max-w-[200px] rounded-md p-1 text-white text-center font-semibold shadow-md">
+              {listing.type === "rent" ? "Rent" : "Sale"}
+            </p>
+            {/* disCount */}
+            {listing.offer && (
+              <p className="w-full max-w-[200px] bg-green-800 rounded-md p-1 text-white text-center font-semibold shadow-md">
+                ${+listing.regularPrice - +listing.discountedPrice} discount
+              </p>
+            )}
+          </div>
+
+          {/* Description */}
+          <p className="mb-3 mt-3 text-sm">
+            <span className="font-semibold text-lg">Description</span> -{" "}
+            {listing.description}
+          </p>
+
+          <ul className="flex items-center space-x-2 sm:space-x-10 text-sm font-semibold">
+            <li className="flex items-center whitespace-nowrap">
+              <FaBedPulse className="text-lg mr-1" />
+              {+listing.bedrooms > 1 ? `${listing.bedrooms} Beds` : "1 Bed"}
+            </li>
+
+            <li className="flex items-center whitespace-nowrap">
+              <FaBath className="text-lg mr-1" />
+              {+listing.bathrooms > 1 ? `${listing.bathrooms} Baths` : "1 Bath"}
+            </li>
+
+            <li className="flex items-center whitespace-nowrap">
+              <FaParking className="text-lg mr-1" />
+              {+listing.parking > 1 ? "Parking Spot" : "No Park"}
+            </li>
+
+            <li className="flex items-center whitespace-nowrap">
+              <FaChair className="text-lg mr-1" />
+              {+listing.furnished > 1 ? "Furnished" : "No Furnished"}
+            </li>
+          </ul>
+        </div>
+        <div className="bg-blue-300 w-full h-[200px] lg-[400px] z-10 overflow-x-hidden"></div>
+      </div>
     </main>
   );
 }
