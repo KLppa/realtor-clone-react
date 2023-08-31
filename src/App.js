@@ -11,6 +11,7 @@ import Header from "./components/Header";
 import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
 import Listing from "./pages/Listing";
+import Demo from "./components/Demo";
 export default function App() {
   return (
     <>
@@ -24,6 +25,7 @@ export default function App() {
 
         <Route path="/sign-in" element={<SignIn />}></Route>
         <Route path="/sign-up" element={<SignUp />}></Route>
+        <Route path="/demo" element={<Demo />}></Route>
 
         <Route path="/forgot-password" element={<ForgotPassword />}></Route>
         <Route path="/offers" element={<Offers />}></Route>
