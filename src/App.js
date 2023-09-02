@@ -12,6 +12,7 @@ import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
 import Listing from "./pages/Listing";
 import Demo from "./components/Demo";
+import Category from "./pages/Category";
 export default function App() {
   return (
     <>
@@ -29,6 +30,7 @@ export default function App() {
 
         <Route path="/forgot-password" element={<ForgotPassword />}></Route>
         <Route path="/offers" element={<Offers />}></Route>
+        <Route path="/category/:categoryName" element={<Category />}></Route>
 
         <Route
           path="/category/:categoryName/:listingId"
