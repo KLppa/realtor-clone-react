@@ -18,7 +18,6 @@ import "swiper/css/bundle";
 import { getAuth } from "firebase/auth";
 import Contact from "../components/Contact";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import zIndex from "uview-ui/libs/config/zIndex";
 
 export default function Listing() {
   const parmas = useParams();
